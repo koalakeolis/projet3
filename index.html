@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+	<title>Map Finale</title>
+</head>
+<body>
+	<div id="presentation" class="rounded">
+	    <h1>Nantes à vélo</h1>
+	    <hr> <!-- Ceci est l'interligne -->
+	    <h2>Votre plateforme de réservation de vélo</h2>
+	    <p>
+	       Bienvenue sur la plateforme de réservation de vélo de la ville de Nantes. Soyez plus écolo, prenez le vélo ! Cette plateforme vous permet en quelques clics de réserver un vélo à une des nombreuses stations qui parsèment notre jolie ville. Pour plus d'explications, visionnez le diaporama intarctif ci-dessous
+	    </p>
+	</div>
+	<div id="diaporama"  class="rounded">
+		<!-- Diapositives -->
+		<div class="slide">
+			<img src="rsz_image1.png" alt="Image 1 du diapo">
+			<p>Sélectionnez une station en vert et appuyez sur le bouton sélectionner</p>
+		</div>
+		<div class="slide">
+			<img src="rsz_image2.png" alt="Image 2 du diapo">
+			<p>Remplissez votre nom et prénom pour réserver</p>
+		</div>	
+		<div class="slide">
+			<img src="rsz_image3.png" alt="Image 3 du diapo">
+			<p>Signez avec votre souris pour confirmer la réservation</p>
+		</div>	
+		<div class="slide">
+			<img src="rsz_image4.png" alt="Image 4 du diapo">
+			<p>Votre vélo est maintenant réservé. Vous pouvez annuler la réservation.</p>
+		</div>	
+		<!-- Buttons -->
+		<button id="btn-prev" class="btn-diapo" onclick="diaporama.prevSlide()">&#10094;</button> 
+		<button id="btn-next" class="btn-diapo" onclick="diaporama.nextSlide()">&#10095;</button>
+		<button class="btn-play-pause btn-diapo"  onclick="diaporama.playPause()">
+			<span class="btn-play ">&#9654;</span>
+			<span class="btn-pause ">&#10074;&#10074;</span>
+		</button>
+	</div>
+	<div id="container">
+ 		<div id="canvas-popup"> 
+		    <span>Veuillez signer pour confirmer </span>
+		    <label>Signature :</label> 
+		    <canvas id="signature-canvas" width="300" height="150"></canvas>
+		    <button id="confirmation-canvas">Confirmer</button>
+		    <button id="annulation-canvas">Annuler</button>
+		</div> 
+		<div id="map"></div>
+		<div id="reservation"> 
+
+			<div id="message-select" class="div-opacite" >
+				<span class="message-select-txt">
+					Veuillez séléctionner une station disponible sur la carte.
+				</span>
+			</div>
+		    <form id="reservation-form" class="div-opacite"> 
+		        <h2>Réservation de Vélo</h2>
+		        <div id="container_infos_station">
+		            <span> Nom de la station : <span id="nom_station"> </span></span> <br>
+		            <span> Adresse : <span id="adresse_station"> </span></span> <br>
+		            <span>Nombre de vélos disponibles : <span id="nb_velos_dispo"> </span></span><br>
+		            <span> Nombre de docks disponibles : <span id="nb_places_dispo"></span> </span> <br>
+		        </div>
+		        <span id="instructions_formulaire">Veuillez renseignez les champs si dessous avant de pouvoir réserver</span>
+		        <div> <!-- Élément de conteneur -->
+		            <label for="nom">Nom :</label>
+		            <input type="text" id="nom" name="nom" required> 
+		        </div>
+		        <div> <!-- Élément de conteneur -->
+		            <label for="prenom">Prénom :</label> 
+		            <input type="text" id="prenom" name="prenom" required> 
+		        </div>
+
+		        <button id="submit-button" class="btn-formulaire" >Réserver</button> 
+		    </form>
+		</div>
+	</div>
+	<div id="user-info" class="user-info">
+	    <p>Nom: <span id="nom-display" class="user-info-data"></span></p> 
+	    <p>Prénom: <span id="prenom-display" class="user-info-data"></span></p> 
+	    <p>Temps restant: <span id="timer-display" class="user-info-data">20:00</span></p> 
+	    <button id="bouton_annuler" class="style_bouton">Annuler la réservation</button>
+	</div>
+	<script src="scriptdiapo.js"></script>
+	<script src="scriptmap.js"></script>
+	<script src="scriptcanva.js"></script>
+	<script src="scriptform.js"></script> 
+	<script src="scripttimer.js"></script> 
+	
+</body>
+</html>
